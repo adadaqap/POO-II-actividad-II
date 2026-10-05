@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+// Clase Producto
+class Producto {
+public:
+    // Se incumple el encapsulamiento porque los atributos son públicos
+    string nombre;
+    double precio;
+    int stock;
+    void mostrarProducto() {
+        cout << "Producto: " << nombre << endl;
+        cout << "Precio: S/ " << precio << endl;
+        cout << "Stock: " << stock << endl;
+    }
+};
+// Clase Tienda
+class Tienda {
+public:
+    Producto producto;
+    // Registrar producto
+    void registrarProducto() {
+        cout << "Ingrese nombre del producto: ";
+        cin >> producto.nombre;
+        cout << "Ingrese precio: ";
+        cin >> producto.precio;
+        cout << "Ingrese stock: ";
+        cin >> producto.stock;
+    }
+    // Realizar compra
+    void comprar() {
+        int cantidad;
+        cout << "Ingrese cantidad a comprar: ";
+        cin >> cantidad;
+        producto.stock = producto.stock - cantidad;
+        cout << "Compra realizada." << endl;
+    }
+};
+int main() {
+    Tienda tienda;
+    // Funcionalidad 1: registrar producto
+    tienda.registrarProducto();
+    // Funcionalidad 2: mostrar producto
+    tienda.producto.mostrarProducto();
+    // Funcionalidad 3: realizar compra
+    tienda.comprar();
+    cout << "\nStock despues de la compra: "
+         << tienda.producto.stock << endl;
+    return 0;
+}
+Salida: 
+Ingrese nombre del producto: pan
+Ingrese precio: 12
+Ingrese stock: 20
+Producto: pan
+Precio: S/ 12
+Stock: 20
+Ingrese cantidad a comprar: 3
+Compra realizada.
+Stock despues de la compra: 17
