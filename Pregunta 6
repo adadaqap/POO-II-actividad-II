@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Producto {
+private:
+    string nombre;
+    double precio;
+    int stock;
+public:
+    void registrarProducto() {
+        cout << "Ingrese nombre del producto: ";
+        cin >> nombre;
+        cout << "Ingrese precio: ";
+        cin >> precio;
+        cout << "Ingrese stock: ";
+        cin >> stock;
+    }
+    void mostrarProducto() {
+        cout << "Producto: " << nombre << endl;
+        cout << "Precio: S/ " << precio << endl;
+        cout << "Stock: " << stock << endl;
+    }
+    void comprar(int cantidad) {
+        if (cantidad <= stock) {
+            stock = stock - cantidad;
+            cout << "Compra realizada correctamente." << endl;
+        } else {
+            cout << "Stock insuficiente." << endl;
+        }
+    }
+    // Obtener el stock para poder verificarlo
+    int obtenerStock() {
+        return stock;
+    }
+};
+class Tienda {
+private:
+    Producto producto;
+public:
+    void registrarProducto() {
+        producto.registrarProducto();
+    }
+    void mostrarProducto() {
+        producto.mostrarProducto();
+    }
+    void realizarCompra() {
+        int cantidad;
+        cout << "Ingrese cantidad a comprar: ";
+        cin >> cantidad;
+        producto.comprar(cantidad);
+    }
+    void mostrarStock() {
+        cout << "Stock despues de la compra: "
+             << producto.obtenerStock() << endl;
+    }
+};
+int main() {
+    Tienda tienda;
+    tienda.registrarProducto();
+    tienda.mostrarProducto();
+    tienda.realizarCompra();
+    tienda.mostrarStock();
+    return 0;
+}
+Ejemplo de salida
+Ingrese nombre del producto: Laptop
+Ingrese precio: 2500
+Ingrese stock: 10
+Producto: Laptop
+Precio: S/ 2500
+Stock: 10
+Ingrese cantidad a comprar: 2
+Compra realizada correctamente.
+Stock despues de la compra: 8
